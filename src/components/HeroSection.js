@@ -1,6 +1,6 @@
 
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import {Button} from '../styles/Button';
 
 const HeroSection = ({myData}) => {
@@ -17,7 +17,9 @@ const HeroSection = ({myData}) => {
 {/* using name as a heading */}
           <h1>{name}</h1>
           <p>
-          Lorem ipsum dolor sit amet. Qui omnis officiis aut voluptas assumenda id obcaecati beatae in ducimus nostrum est obcaecati aliquam eum atque maiores.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+              atque temporibus veniam doloribus libero ad error omnis voluptates
+              animi! Suscipit sapiente.
           </p>
 
           <NavLink>
@@ -31,7 +33,7 @@ const HeroSection = ({myData}) => {
          {/* our homepage image */}
          <div className='hero-section-image'>
           <figure>
-            <img src="/images/hero.jpg" alt="hero-section-image" className="img-style" />
+            <img src="/images/hero.jpg" alt="hero-section" className="img-style" />
           </figure>
          </div>
         </div>

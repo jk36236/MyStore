@@ -14,14 +14,14 @@ const Header = () => {
     </NavLink>
 
     <Nav />
-  </MainHeader>
+  </MainHeader> 
   );
 }
 
 
 const MainHeader=styled.header`
 padding:0 4.8rem;
-height:8rem;
+height:10rem;
 background-color: ${({theme})=> theme.colors.bg};
 display:flex;
 justify-content:space-between;
