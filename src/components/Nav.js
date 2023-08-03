@@ -84,6 +84,7 @@ const Nav = () => {
     font-size: 1.4rem;
     padding: 0.8rem 1.4rem;
   }
+  //handling menuicons in mobile view
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .mobile-navbar-btn {
