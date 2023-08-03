@@ -2,7 +2,13 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import {FiShoppingCart} from "react-icons/fi";
+import {CgMenu,CgClose} from "react-icons/cg";
+import { useState } from 'react';
 const Nav = () => {
+//state for adding active class to div having class navbar
+// handle the states in icons
+  const[menuIcon,setMenuIcon]=useState();
+
   const Nav = styled.nav`
   .navbar-lists {
     display: flex;
@@ -28,6 +34,7 @@ const Nav = () => {
     }
   }
 
+  // so that the mobile buttons don't get displayed
   .mobile-navbar-btn {
     display: none;
     background-color: transparent;
@@ -35,6 +42,8 @@ const Nav = () => {
     border: none;
   }
 
+  // mobile me sirf 1 he icon dikhana hai isliye close wale ki display noe kra ke rakhi hai
+  // and niche dono properties ka same kaam hai, agar 1 kaam nahi kiya toh doosra kr jayega
   .mobile-nav-icon[name="close-outline"] {
     display: none;
   }
@@ -88,21 +97,25 @@ const Nav = () => {
       }
     }
 
+    //jab humne hamburger icon par click kiya toh active ho jayega nav-icon
     .active .mobile-nav-icon {
+      //hamburger wale ko hide kar diya
       display: none;
       font-size: 4.2rem;
       position: absolute;
+      //position for close icon
       top: 30%;
       right: 10%;
       color: ${({ theme }) => theme.colors.black};
       z-index: 9999;
     }
-
+//close wale ko show kr diya
     .active .close-outline {
       display: inline-block;
     }
 
     .navbar-lists {
+      //mobile me full screen pe show hoga navbar
       width: 100vw;
       height: 100vh;
       position: absolute;
@@ -110,6 +123,7 @@ const Nav = () => {
       left: 0;
       background-color: #fff;
 
+      //to display them horizontally
       display: flex;
       justify-content: center;
       align-items: center;
@@ -158,31 +172,41 @@ const Nav = () => {
 `;
   return (
     <Nav>
-    <div className='navbar'>
+      {/* if menuicon value is true then div ill have class navbar and active lese only navbar */}
+    <div className={menuIcon?"navbar active ": "navbar"}>
       <ul className='navbar-lists'>
         <li>
-          <NavLink to="/" className="navbar-link">Home</NavLink>
+          <NavLink to="/" className="navbar-link" onClick={()=>setMenuIcon(false)}>Home</NavLink>
         </li>
         <li>
-          <NavLink to="/about" className="navbar-link">About</NavLink>
+          <NavLink to="/about" className="navbar-link" onClick={()=>setMenuIcon(false)}>About</NavLink>
         </li>
         <li>
-          <NavLink to="/product" className="navbar-link">Product</NavLink>
+          <NavLink to="/product" className="navbar-link" onClick={()=>setMenuIcon(false)}>Product</NavLink>
         </li>
         <li>
-          <NavLink to="/contact" className="navbar-link">Contact</NavLink>
+          <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>
         </li>
         
         <li>
           {/* cart-trolley--link class so that the total cart items no. appears on top corner of cart */}
-          <NavLink to="/cart" className="navbar-link cart-trolley--link">
-{/* icon from react-icons library */}
+          <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
+{/* icon from react-icons library */} 
             <FiShoppingCart className="cart-trolley" />
             <span className='cart-total--item'>10</span>
           </NavLink>
         </li>
-        
       </ul>
+
+      {/* 2 buttons for open and close of menu in mobile view
+      initially display:none so they are not visible */}
+      <div className='mobile-navbar-btn'>
+        {/* icons from react icons */}
+        {/* handling icon states onclick */}
+        <CgMenu className="mobile-nav-icon" name="menu-outline" onClick={()=>setMenuIcon(true)}/>
+        <CgClose className="mobile-nav-icon close-outline" name="close-outline" onClick={()=>setMenuIcon(false)}/>
+      </div>
+
     </div>
 
     </Nav>
