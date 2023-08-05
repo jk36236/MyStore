@@ -21,7 +21,7 @@ const Nav = () => {
         display: inline-block;
         text-decoration: none;
         font-size: 1.8rem;
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
         color: ${({ theme }) => theme.colors.black};
         transition: color 0.3s linear;
@@ -183,7 +183,7 @@ const Nav = () => {
           <NavLink to="/about" className="navbar-link" onClick={()=>setMenuIcon(false)}>About</NavLink>
         </li>
         <li>
-          <NavLink to="/product" className="navbar-link" onClick={()=>setMenuIcon(false)}>Product</NavLink>
+          <NavLink to="/products" className="navbar-link" onClick={()=>setMenuIcon(false)}>Products</NavLink>
         </li>
         <li>
           <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>

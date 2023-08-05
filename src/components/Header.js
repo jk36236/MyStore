@@ -10,7 +10,7 @@ const Header = () => {
 
 {/* now when we click on image we will be redirected to home page without refreshing the page */}
     <NavLink to="/">
-<img src='./images/logo.png' alt="logo" />
+<img src='./images/logo.png' alt="logo" className='logo'/>
     </NavLink>
 
     <Nav />
@@ -21,7 +21,7 @@ const Header = () => {
 
 const MainHeader=styled.header`
 padding:0 4.8rem;
-height:10rem;
+height:8rem;
 background-color: ${({theme})=> theme.colors.bg};
 display:flex;
 justify-content:space-between;
@@ -29,7 +29,7 @@ align-items:center;
 position:relative;
 
 .logo{
-  height:5rem;
+  height:4rem;
 }
 
 `;
