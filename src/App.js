@@ -10,6 +10,8 @@ import ErrorPage from './ErrorPage';
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 
 
 const App = () => {
@@ -55,6 +57,7 @@ const theme={
       {/* agar upar wale routes ke alaa koi bhi route hoga then we will show error */}
       <Route path="*" element={<ErrorPage /> }/>
     </Routes>
+    <Footer />
     </BrowserRouter>
     </ThemeProvider>
   );
