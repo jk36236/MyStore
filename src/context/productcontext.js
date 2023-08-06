@@ -23,6 +23,9 @@ const initialState={
   isError:false,
   products:[],
   featureProducts:[],
+  //for singleproduct page
+  isSingleLoading:false,
+  singleProduct:{},
 }
 
 //children is <App /> component
@@ -32,7 +35,7 @@ const AppProvider=({children})=>{
   const[state,dispatch]=useReducer(reducer,initialState);
 
 
-// {-------------------------API CALL-------------------------}
+// {------------------------1st API CALL for products-------------------------}
   // humne API ko as a url yhan le leiya hai
   //try and catch because we have to check for error, whether we are getting products or not
   // and before error we have to show loader ,now when dispatch is called it will call action from reducer
@@ -55,7 +58,22 @@ const AppProvider=({children})=>{
   },[])
 
 
-  return <AppContext.Provider value={{...state}}>
+
+  // {---------------------2nd API CALL FOR SINGLE PRODUCT-----------------}
+// if we want singleproduct page to call this function we have to pass it so that it will be called with the url 
+const getSingleProduct = async(url)=>{
+  dispatch({type:"SET_SINGLE_LOADING"});
+try {
+  const res=await axios.get(url);
+  const singleProduct=await res.data;
+  dispatch({type:"SET_SINGLE_PRODUCT",payload:singleProduct});
+} catch (error) {
+  dispatch({type:"SET_SINGLE_ERROR"});
+}
+};
+
+
+  return <AppContext.Provider value={{...state,getSingleProduct}}>
 {children}
   </AppContext.Provider>
 };
