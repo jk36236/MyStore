@@ -1,6 +1,25 @@
 import styled from "styled-components";
+import {useParams} from "react-router-dom";
+import { useEffect } from "react";
+import { useProductContext } from "./context/productcontext";
 
+
+const API = "https://api.pujakaitem.com/api/products";
 const SingleProduct =()=>{
+const {getSingleProduct, isSingleLoading, singleProduct}=useProductContext();
+  const {id }=useParams();
+
+  // destructing product details from single product
+  const{
+    id:alias,//changed the name because already have id from url and can name it anything
+    name,
+    company,price, description, category, stock, reviews, stars
+  }=singleProduct();
+
+
+  useEffect(()=>{
+getSingleProduct(`${API}?id=${id}`);//adding id of product to url of api, so that we get that prdouct details
+  },[]);
   return <Wrapper></Wrapper>;
 
 }
