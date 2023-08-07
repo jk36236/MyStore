@@ -9,6 +9,8 @@ import FormatPrice from "./helpers/FormatPrice";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import Star from "./components/Star";
+import AddToCart from "./components/AddToCart";
+
 
 
 
@@ -102,6 +104,10 @@ getSingleProduct(`${API}?id=${id}`);//adding id of product to url of api, so tha
                 Brand :<span> {company} </span>
               </p>
 </div>
+
+<hr />
+{/* agar stock me 0 se jyada prdt he tab add to cart show karna hai */}
+{stock>0 && <AddToCart product={singleProduct}/>}
     </div>
   </div>
 </Container>
