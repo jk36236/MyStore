@@ -23,13 +23,13 @@ return(
   </figure>
 );
  })}
-
+</div>
 
  {/* 2nd column */}
  <div className="main-screen">
   {/* img[0].url will give error, therefor while destructing we have to give it a default value */}
   <img src={mainImage.url} alt={mainImage.filename} />
- </div>
+ 
   </div>
     </Wrapper>
   );
