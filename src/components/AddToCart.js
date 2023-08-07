@@ -1,11 +1,27 @@
 import React,{useState} from 'react'
 import styled from 'styled-components';
 import { FaCheck } from "react-icons/fa";
+import CartAmountToggle from './CartAmountToggle';
+import {NavLink} from "react-router-dom";
+import {Button} from "../styles/Button";
+ 
 
 const AddToCart = ({product}) => {
   const{id,colors,stock}=product;
   // states
   const[color,setColor] = useState(colors[0]);
+  const[amount,setAmount] = useState(1);
+
+// decreasing count
+  const setDecrease=()=>{
+    //if amount is >0 then decrement by 1 ,else setamount to 1
+  amount>0 ?setAmount(amount -1): setAmount(1)
+  }
+// increasing count
+  const setIncrease=()=>{
+    //if value is less then ehat we have in stock then increment else set to stock
+amount<stock ? setAmount(amount +1 ): setAmount(stock)
+  }
   
   return (
     <Wrapper>
@@ -15,18 +31,34 @@ const AddToCart = ({product}) => {
           colors.map((curColor,index)=>{
           return(
             //jo bhi curcolor hai use background color set kar diya hai
-            <button key={index} style={{backgroundColor:curColor}} className={color === curColor? "btnStyle active": "btnStyle"}
-            onClick={()=>setColor(curColor)}//click on any btn will set it as curcolor
-            >//active class to highlight the btn
-            
-            {color===curColor? <FaCheck className='checkStyle'/>: null}//check icon on active  
-              //color and null will hide text  
+            <button 
+            key={index} 
+            style={{backgroundColor:curColor}} 
+            className={color === curColor? "btnStyle active": "btnStyle"}
+            onClick={()=>setColor(curColor)}>
+              {/* //click on any btn will set it as curcolor
+             //active class to highlight the btn */}
+
+            {color===curColor? <FaCheck className='checkStyle'/>: null}
+            {/* //check icon on active color and null will hide text   */}
             </button>
           )
           })
         }
       </p>
     </div>
+
+    {/* add to cart */}
+    <CartAmountToggle 
+    amount={amount}
+    setDecrease={setDecrease}
+    setIncrease={setIncrease}
+    
+    />
+
+    <NavLink to="/cart">
+    <Button>Add To Cart</Button>
+    </NavLink>
     </Wrapper>
   );
 }
