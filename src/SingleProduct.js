@@ -8,6 +8,8 @@ import {Container} from "./styles/Container";
 import FormatPrice from "./helpers/FormatPrice";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import Star from "./components/Star";
+
 
 
 
@@ -47,8 +49,9 @@ getSingleProduct(`${API}?id=${id}`);//adding id of product to url of api, so tha
     {/* products data */}
     <div className="product-data">
    <h2>{name}</h2>
-   <p>{stars}</p>
-   <p>{reviews} reviews</p>
+
+   <Star star={stars} review={reviews} />
+   
 
    <p className="product-data-price">
     {/* del- to make number have line drawn over it like delete effect */}
