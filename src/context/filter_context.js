@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useProductContext } from "./productcontext";
 import reducer from '../reducer/filterReducer';
+import { FaBullseye } from "react-icons/fa";
 
 const FilterContext=createContext();//creating a context
 
@@ -8,7 +9,7 @@ const FilterContext=createContext();//creating a context
 const initialState={
   filter_products:[],//isme he products add krne hai
   all_products:[],
-  grid_view:true,
+  grid_view:false,
 }
 
 //provider- wrap <app> component with it
