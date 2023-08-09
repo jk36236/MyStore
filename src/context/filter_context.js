@@ -9,7 +9,7 @@ const FilterContext=createContext();//creating a context
 const initialState={
   filter_products:[],//isme he products add krne hai
   all_products:[],
-  grid_view:false,
+  grid_view:true,
 }
 
 //provider- wrap <app> component with it
@@ -24,15 +24,19 @@ const[state,dispatch]=useReducer(reducer,initialState);
 
 // to set the grid view
 const setGridView=()=>{
-  return dispatch({type:"SET_GRIDVIEW"});
+  return dispatch({type:"SET_GRID_VIEW"});
 };
 
+// to set the list view
+const setListView=()=>{
+  return dispatch({type:"SET_LIST_VIEW"});
+};
 useEffect(()=>{
 dispatch({type:"LOAD_FILTER_PRODUCTS",payload:products})
 },[products])
 
 return(
-  <FilterContext.Provider value={{...state, setGridView}}>
+  <FilterContext.Provider value={{...state, setGridView, setListView}}>
 {children}
   </FilterContext.Provider>
 );
