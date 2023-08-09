@@ -5,7 +5,7 @@ import { useFilterContext } from '../context/filter_context';
 
 const Sort = () => {
 
-  const{filter_products,grid_view,setGridView,setListView}=useFilterContext();
+  const{filter_products,grid_view,setGridView,setListView,sorting}=useFilterContext();
   return (
     <Wrapper className='sort-section'>
       {/* 1st column */}
@@ -26,9 +26,22 @@ const Sort = () => {
 <div className='product-data'>
   <p>{`${filter_products.length} Products Available`}</p>
 </div>
-
+{/* 3rd column */}
 <div className='sort-selection '>
-  dropdown
+<form action="#">
+  {/* lable for and jo select ki id hai vo same honi cahiye */}
+          <label htmlFor="sort"></label>
+          <select name="sort" id="sort"className="sort-selection--style"
+            onClick={sorting}>
+            <option value="lowest">Price(lowest)</option>
+            <option value="#" disabled></option>
+            <option value="highest">Price(highest)</option>
+            <option value="#" disabled></option>
+            <option value="a-z">Price(a-z)</option>
+            <option value="#" disabled></option>
+            <option value="z-a">Price(z-a)</option>
+          </select>
+        </form>
 </div>
     </Wrapper>
   )

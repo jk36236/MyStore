@@ -10,6 +10,7 @@ const initialState={
   filter_products:[],//isme he products add krne hai
   all_products:[],
   grid_view:true,
+  sorting_value:"lowest",
 }
 
 //provider- wrap <app> component with it
@@ -31,12 +32,28 @@ const setGridView=()=>{
 const setListView=()=>{
   return dispatch({type:"SET_LIST_VIEW"});
 };
+
+// sorting function- to get value seected by user in sort filter and will perform action acoording to it in the reducer
+ // sorting function
+ //get the value with help of event object and pass as payload
+ const sorting = (event) => {
+  let userValue = event.target.value;
+  dispatch({ type: "GET_SORT_VALUE", payload: userValue });
+};
+
+//whenever user selects any filter option we want that wheeevr this value changes then the filter_products should be changed
+// to sort the products
+useEffect(() => {
+  dispatch({ type: "SORTING_PRODUCTS" });
+}, [state.sorting_value]);
+
+
 useEffect(()=>{
 dispatch({type:"LOAD_FILTER_PRODUCTS",payload:products})
 },[products])
 
 return(
-  <FilterContext.Provider value={{...state, setGridView, setListView}}>
+  <FilterContext.Provider value={{...state, setGridView, setListView,sorting}}>
 {children}
   </FilterContext.Provider>
 );
