@@ -8,8 +8,8 @@ import { useFilterContext } from "./context/filter_context";
 
 const Products = () => {
 
-  const {filter_products}=useFilterContext();
-  console.log(filter_products);
+ 
+  
   return( <Wrapper>
     {/* we haven't used grid-2-column because i n that both columns get equal width but here 1st col-less width(20%), 2nd col-more width(80%),thats why grid-filter-column class */}
 <div className="container grid grid-filter-column">
