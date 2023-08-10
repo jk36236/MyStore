@@ -64,6 +64,35 @@ switch (action.type) {
           ...state,
           filter_products: newSortData,
         };
+
+
+    case "UPDATE_FILTERS_VALUE":
+      const{name,value}=action.payload;
+      return{
+        ...state,
+        filters:{
+          ...state.filters,
+          [name]:value,     //jo data hai vo asitis pada rahega bas ,bas name ki jageh value chali jayegi, and name=text for now,therefore jo usr likhega vo text me chala jayega
+        }
+      }
+
+
+    case "FILTER_PRODUCTS":
+      let {all_products}=state;
+      let tempFilterProduct=[...all_products];
+
+      const {text}=state.filters;
+//if text ki value change hoti hai toh ye run karega
+      if(text){
+      //filter me jo match kr gaya uska poora ka poora data aata hai,agar map use krte toh vo particular property milta
+      tempFilterProduct=tempFilterProduct.filter((curElem)=>{
+      return curElem.name.toLowerCase().includes(text);//ye vo products return kr dega jiske name me ye text(jo usr type karega) included hai ya nahi
+      });
+      }
+      return{
+        ...state,
+        filter_products: tempFilterProduct,
+      }
   default:
     return state;
 }
