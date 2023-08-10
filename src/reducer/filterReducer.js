@@ -81,7 +81,7 @@ switch (action.type) {
       let {all_products}=state;
       let tempFilterProduct=[...all_products];
 
-      const {text}=state.filters;
+      const {text,category}=state.filters;
 //if text ki value change hoti hai toh ye run karega
       if(text){
       //filter me jo match kr gaya uska poora ka poora data aata hai,agar map use krte toh vo particular property milta
@@ -89,6 +89,13 @@ switch (action.type) {
       return curElem.name.toLowerCase().includes(text);//ye vo products return kr dega jiske name me ye text(jo usr type karega) included hai ya nahi
       });
       }
+
+      if(category){
+        tempFilterProduct=tempFilterProduct.filter((curElem)=>{
+        return curElem.category === category;//jitna bhi data hai unme aisi category ki filter out kr do jo mere is category(jo usr ne filter ui me select ki hai) se mtch ho rahi ho.
+        });
+        }
+
       return{
         ...state,
         filter_products: tempFilterProduct,

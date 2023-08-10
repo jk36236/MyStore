@@ -2,16 +2,54 @@ import React from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 
+
 const FilterSection = () => {
 
-  const{filters:{text},updateFilterValue}=useFilterContext();
+  const{filters:{text,category},updateFilterValue,all_products}=useFilterContext();
+
+// --------------to get unique data of each field---------------------
+//hume is data pe loop lga ke is property ka data get krna hai
+const getUniqueData=(data,property)=>{
+let newValue=data.map((curElem)=>{//jab hum map chalaenge toh us property/field ki he value milegi
+return curElem[property];//we will get an array containing values of property(repititive values)
+})
+return (
+  newValue=["All", ...new Set(newValue)]
+   );//isise unique value mil jayegi us property ki
+}
+
+  // get unique data function
+  const categoryOnlyData=getUniqueData(all_products,"category");//1st-all data,2nd-filed for hich u want to get unique data
+
 
   return (
     <Wrapper>
 <div className='filter-search'>
   <form onSubmit={(e)=>e.preventDefault()}>
-    <input type="text" name="text" value={text} onChange={updateFilterValue}/>
+    <input type="text" name="text" value={text} onChange={updateFilterValue} placeholder="SEARCH"/>
   </form>
+</div>
+
+{/* category section */}
+<div className='filter-category'>
+  <h3>Category</h3>
+  <div>
+    {
+      categoryOnlyData.map((curElem,index)=>{
+       return (
+       <button
+        key={index}
+        type="button"
+        name="category"
+        value={curElem}
+        onClick={updateFilterValue}
+       >
+{curElem}
+       </button>
+       );
+      })
+    }
+  </div>
 </div>
     </Wrapper>
   )
