@@ -81,7 +81,7 @@ switch (action.type) {
       let {all_products}=state;
       let tempFilterProduct=[...all_products];
 
-      const {text,category,company}=state.filters;
+      const {text,category,company,color}=state.filters;
 //if text ki value change hoti hai toh ye run karega
       if(text){
       //filter me jo match kr gaya uska poora ka poora data aata hai,agar map use krte toh vo particular property milta
@@ -91,17 +91,25 @@ switch (action.type) {
       }
 
       //mtlb jab category all nahi hogi tabhi filter chalega,therefore all wale ke liye nahi chalega asitis show hoga
-      if(category !== "all"){
-        tempFilterProduct=tempFilterProduct.filter((curElem)=>{
-        return curElem.category === category//jitna bhi data hai unme aisi category ki filter out kr do jo mere is category(jo usr ne filter ui me select ki hai) se mtch ho rahi ho.
-        });
+      if(category !== "All"){
+        tempFilterProduct = tempFilterProduct.filter(
+          (curElem) => curElem.category === category
+        ); //jitna bhi data hai unme aisi category ki filter out kr do jo mere is category(jo usr ne filter ui me select ki hai) se mtch ho rahi ho.
         }
-      
-        if(company !== "all"){
-          tempFilterProduct=tempFilterProduct.filter((curElem)=>{
-          return curElem.company.toLowerCase() === company.toLowerCase()
-          });
-          }
+
+        if (company !== "All") {
+          tempFilterProduct = tempFilterProduct.filter(
+            (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
+          );
+        }
+
+
+
+        if(color !== "All"){
+          tempFilterProduct = tempFilterProduct.filter(
+            (curElem) => curElem.colors.includes(color)//kya jo curElem ka colors array hai uske andar jo usr ne color select kiya hai vo hai ,hai toh us product ko dikha do]
+          );
+        }
       return{
         ...state,
         filter_products: tempFilterProduct,

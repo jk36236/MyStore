@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useProductContext } from "./productcontext";
 import reducer from '../reducer/filterReducer';
-import { FaBullseye } from "react-icons/fa";
+
 
 const FilterContext=createContext();//creating a context
 
@@ -15,6 +15,7 @@ const initialState={
     text:"",
     category:"all",
     company:"all",
+    color:"all",
   }
 }
 

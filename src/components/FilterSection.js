@@ -1,26 +1,46 @@
 import React from 'react'
+import { FaCheck } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 
 
+
 const FilterSection = () => {
 
-  const{filters:{text,category},updateFilterValue,all_products}=useFilterContext();
+  const {
+    filters: { text, category, color },
+    updateFilterValue,
+    all_products,
+  } = useFilterContext();
 
 // --------------to get unique data of each field---------------------
 //hume is data pe loop lga ke is property ka data get krna hai
 const getUniqueData=(data,property)=>{
 let newValue=data.map((curElem)=>{//jab hum map chalaenge toh us property/field ki he value milegi
 return curElem[property];//we will get an array containing values of property(repititive values)
-})
-return (
-  newValue=["All", ...new Set(newValue)]
-   );//isise unique value mil jayegi us property ki
+});
+
+
+//colors ke case me hume 1 array cahiye tha of unique colors and if we dont do this then we are gettin arrays of differnt colors of different products in which values are repeating
+if(property === "colors"){
+  // return
+    // newValue=["ALL",...new Set([].concat(...newValue))]
+  //ye colors wale case me chalega
+  //newValue ka data array me chal gaya and with set humne duplicate values remove krva di
+  newValue=newValue.flat();//agar colors then newValue ko update kr do is tareh se taki we get no duplicate and unique values and for category and company niche wala chalega threfore vo asitis mil jayegi
 }
+
+  return (
+    newValue=["All", ...new Set(newValue)]
+     );//isise unique value mil jayegi us property ki, ye category and company ke liye
+
+
+};
 
   // get unique data function
   const categoryOnlyData=getUniqueData(all_products,"category");//1st-all data,2nd-filed for hich u want to get unique data
   const companyOnlyData=getUniqueData(all_products,"company");
+  const colorsOnlyData=getUniqueData(all_products,"colors");
 
 
   return (
@@ -73,6 +93,44 @@ return (
     </select>
   </form>
 </div>
+
+
+{/* colors section */}
+<div className="filter-colors colors">
+        <h3>Colors</h3>
+
+        <div className="filter-color-style">
+          {colorsOnlyData.map((curColor, index) => {
+
+            if (curColor === "All") {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  value={curColor}
+                  name="color"
+                  className="color-all--style"
+                  onClick={updateFilterValue}>
+                  all
+                </button>
+              );
+            }
+            return (
+              <button
+                key={index}
+                type="button"
+                value={curColor}
+                name="color"
+                style={{ backgroundColor: curColor }}
+                className={color === curColor ? "btnStyle active" : "btnStyle"}
+                onClick={updateFilterValue}>
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
     </Wrapper>
   )
 }
