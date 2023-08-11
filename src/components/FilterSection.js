@@ -20,6 +20,7 @@ return (
 
   // get unique data function
   const categoryOnlyData=getUniqueData(all_products,"category");//1st-all data,2nd-filed for hich u want to get unique data
+  const companyOnlyData=getUniqueData(all_products,"company");
 
 
   return (
@@ -42,6 +43,7 @@ return (
         type="button"
         name="category"
         value={curElem}
+        className={curElem === category ? "active" : ""}
         onClick={updateFilterValue}
        >
 {curElem}
@@ -50,6 +52,26 @@ return (
       })
     }
   </div>
+</div>
+
+
+{/* company section */}
+<div className='filter-company'>
+  <h3>Company</h3>
+  <form action="#">
+    <select name="company" id="company" className="filter-company--select" onClick={updateFilterValue}>
+
+      {
+        companyOnlyData.map((curElem,index)=>{
+          return(
+         <option key={index} value={curElem} name="company">
+          {curElem}
+         </option>
+          );
+        })
+      }
+    </select>
+  </form>
 </div>
     </Wrapper>
   )
