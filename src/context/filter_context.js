@@ -50,6 +50,14 @@ const setListView=()=>{
   dispatch({ type: "GET_SORT_VALUE", payload: userValue });
 };
 
+
+
+// to clear the filters
+const clearFilters=()=>{
+  dispatch({type:"CLEAR_FILTERS"});
+}
+
+
 //whenever user selects any filter option we want that wheeevr this value changes then the filter_products should be changed
 // to sort the products
 useEffect(() => {
@@ -69,7 +77,7 @@ dispatch({type:"LOAD_FILTER_PRODUCTS",payload:products})
 },[products])
 
 return(
-  <FilterContext.Provider value={{...state, setGridView, setListView,sorting,updateFilterValue}}>
+  <FilterContext.Provider value={{...state, setGridView, setListView,sorting,updateFilterValue,clearFilters,}}>
 {children}
   </FilterContext.Provider>
 );

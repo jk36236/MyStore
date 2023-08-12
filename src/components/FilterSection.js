@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import FormatPrice from "../helpers/FormatPrice";
-
+import {Button} from "../styles/Button"
 
 const FilterSection = () => {
 
@@ -11,6 +11,7 @@ const FilterSection = () => {
     filters: { text, category, color, price, maxPrice, minPrice },
     updateFilterValue,
     all_products,
+    clearFilters,
   } = useFilterContext();
 
 // --------------to get unique data of each field---------------------
@@ -143,6 +144,13 @@ if(property === "colors"){
           value={price}
           onChange={updateFilterValue}
         />
+</div>
+
+{/* clear filter */}
+<div className='filter-clear'>
+  <Button className='btn' onClick={clearFilters}>
+    Clear Filters
+  </Button>
 </div>
     </Wrapper>
   )
