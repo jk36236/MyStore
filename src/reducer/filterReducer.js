@@ -2,10 +2,38 @@ const filterReducer=(state,action)=>{
 
 switch (action.type) {
   case "LOAD_FILTER_PRODUCTS":
+
+  //  when page loads we want price filter to have maxPrice value and products with that maxprce should load
+    let priceArr = action.payload.map((curElem) => curElem.price);
+    // console.log(
+    //   "🚀 ~ file: filterReducer.js ~ line 5 ~ filterReducer ~ priceArr",
+    //   priceArr
+    // );
+
+    // 1way-to get max from array
+    // console.log(Math.max.apply(null, priceArr));
+
+    // 2nd way-Reduce method
+    // let maxPrice = priceArr.reduce(
+    //   (initialVal, curVal) => Math.max(initialVal, curVal),
+    //   0
+    // );
+    // console.log(
+    //   "🚀 ~ file: filterReducer.js ~ line 16 ~ filterReducer ~ maxPrice",
+    //   maxPrice
+    // );
+
+    // 3rd -using spread operator
+    let maxPrice = Math.max(...priceArr);
+    console.log(
+      "🚀 ~ file: filterReducer.js ~ line 23 ~ filterReducer ~ maxPrice",
+      maxPrice
+    );
     return{
       ...state,
       filter_products:[...action.payload],
       all_products:[...action.payload], //we are using ... because we don't want to make changes inn original data, ... means we are making changes in copy of original data and not original data
+      filters: { ...state.filters, maxPrice:maxPrice, price: maxPrice },
     }
     
   case "SET_GRID_VIEW":
@@ -81,7 +109,7 @@ switch (action.type) {
       let {all_products}=state;
       let tempFilterProduct=[...all_products];
 
-      const {text,category,company,color}=state.filters;
+      const {text,category,company,color,price}=state.filters;
 //if text ki value change hoti hai toh ye run karega
       if(text){
       //filter me jo match kr gaya uska poora ka poora data aata hai,agar map use krte toh vo particular property milta
@@ -108,6 +136,16 @@ switch (action.type) {
         if(color !== "All"){
           tempFilterProduct = tempFilterProduct.filter(
             (curElem) => curElem.colors.includes(color)//kya jo curElem ka colors array hai uske andar jo usr ne color select kiya hai vo hai ,hai toh us product ko dikha do]
+          );
+        }
+       
+        if(price === 0){
+          tempFilterProduct = tempFilterProduct.filter(
+            (curElem) => curElem.price === price //user select 0 price then show prdt equal to this price
+          );
+        }else{
+          tempFilterProduct = tempFilterProduct.filter(
+            (curElem) => curElem.price <= price //hume vo products dikhane hain jinka price, price(jo use ne set kiya with input filter) ke equal ya kam ho
           );
         }
       return{
