@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import CartItem from "./components/CartItem";
 import { useCartContext } from "./context/cart_context";
+
 
 const Cart = () => {
   const {cart}=useCartContext();
@@ -15,6 +17,16 @@ const Cart = () => {
         <p>Remove</p>
       </div>
       <hr />
+
+
+      {/* cart item */}
+      <div className="cart-item">
+        {
+          cart.map((curElem)=>{
+            return <CartItem key={curElem.id} {...curElem} />
+          })
+        }
+      </div>
     </div>
   </Wrapper>;
 };
