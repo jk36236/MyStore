@@ -4,9 +4,11 @@ import { FaCheck } from "react-icons/fa";
 import CartAmountToggle from './CartAmountToggle';
 import {NavLink} from "react-router-dom";
 import {Button} from "../styles/Button";
+import { useCartContext } from '../context/cart_context';
  
 
 const AddToCart = ({product}) => {
+  const {addToCart}=useCartContext();
   const{id,colors,stock}=product;
   // states
   const[color,setColor] = useState(colors[0]);
@@ -55,8 +57,9 @@ amount<stock ? setAmount(amount +1 ): setAmount(stock)
     setIncrease={setIncrease}
     
     />
-
-    <NavLink to="/cart">
+{/* color-jo state variable me hai,yani ki jo usr ne slect kiya hai,
+product-singleproduct ka data hai jisko humne as aprop pass kiya h in singleproduct.js*/}
+    <NavLink to="/cart" onClick={()=>addToCart(id,color,amount,product)}>
     <Button>Add To Cart</Button>
     </NavLink>
     </Wrapper>

@@ -25,15 +25,15 @@ switch (action.type) {
 
     // 3rd -using spread operator
     let maxPrice = Math.max(...priceArr);
-    console.log(
-      "🚀 ~ file: filterReducer.js ~ line 23 ~ filterReducer ~ maxPrice",
-      maxPrice
-    );
+    // console.log(
+    //   "🚀 ~ file: filterReducer.js ~ line 23 ~ filterReducer ~ maxPrice",
+    //   maxPrice
+    // );
     return{
       ...state,
       filter_products:[...action.payload],
       all_products:[...action.payload], //we are using ... because we don't want to make changes inn original data, ... means we are making changes in copy of original data and not original data
-      filters: { ...state.filters, maxPrice:maxPrice, price: maxPrice },
+      filters: { ...state.filters,maxPrice, price: maxPrice },
     }
     
   case "SET_GRID_VIEW":

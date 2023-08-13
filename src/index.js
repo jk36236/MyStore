@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productcontext";
 import { FilterContextProvider } from "./context/filter_context";
+import { CartProvider } from "./context/cart_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -13,7 +14,9 @@ root.render(
   //app provider is bigger thats why outside and filtercontext provider is inside it so that it can use the data of appProvider ,because we get the products data through appprovider and the data which we have to show on products page is the same
 <AppProvider>
   <FilterContextProvider>
+    <CartProvider>
 <App />
+</CartProvider>
 </FilterContextProvider>
 </AppProvider>
 );
