@@ -51,8 +51,15 @@ useEffect(()=>{
 
 },[state.cart])//jab bhi cart me changes hoga ye run hoga
 
+
+// to clear the cart
+const clearCart=()=>{
+  dispatch({type:"CLEAR_CART"});
+}
+
     return (
-    <CartContext.Provider value={{...state,addToCart,removeItem}}>
+      //these values are passed in provider so that any component in app can use these
+    <CartContext.Provider value={{...state,addToCart,removeItem, clearCart}}>
       {children}
     </CartContext.Provider>
     );
