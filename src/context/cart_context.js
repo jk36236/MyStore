@@ -20,9 +20,13 @@ const CartProvider=({children})=>{//children ka 1st letter should be small
   const addToCart=(id,color,amount,product)=>{
     dispatch({type:"ADD_TO_CART",payload:{id,color,amount,product}})
   }
-  
+
+
+  const removeItem=(id)=>{
+   dispatch({type:"REMOVE_ITEM",payload:id})
+  }
     return (
-    <CartContext.Provider value={{...state,addToCart}}>
+    <CartContext.Provider value={{...state,addToCart,removeItem}}>
       {children}
     </CartContext.Provider>
     );
