@@ -11,7 +11,8 @@ const GridView = ({products}) => {
   {/* loop over products array , product wahi component hai jaise hume homepage pe dikhaye the*/}
   {
     products.map((curElem)=>{
-    return <Product key ={curElem.id} {...curElem}/>//map me key dena compulsory hai
+    return <Product key ={curElem.id} {...curElem}/>
+    //map me key dena compulsory hai
     })
   }
 

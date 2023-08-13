@@ -132,7 +132,7 @@ if(property === "colors"){
         </div>
       </div>
 
-{/* price section */}
+{/* price section*/}
 <div className='filter_price'>
   <h3>Price</h3>
   <p><FormatPrice price={price} /></p>
@@ -146,15 +146,15 @@ if(property === "colors"){
         />
 </div>
 
-{/* clear filter */}
-<div className='filter-clear'>
+{/* clear filter */} 
+ <div className='filter-clear'>
   <Button className='btn' onClick={clearFilters}>
     Clear Filters
   </Button>
 </div>
     </Wrapper>
   )
-}
+} 
 
 const Wrapper = styled.section`
   padding: 5rem 0;

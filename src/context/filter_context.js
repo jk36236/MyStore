@@ -13,9 +13,9 @@ const initialState={
   sorting_value:"lowest",
   filters:{
     text:"",
-    category:"all",
-    company:"all",
-    color:"all",
+    category:"All",
+    company:"All",
+    color:"All",
     maxPrice:0,
     price:0,
     minPrice:0,

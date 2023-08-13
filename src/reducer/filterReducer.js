@@ -161,12 +161,12 @@ switch (action.type) {
           filters:{
             ...state.filters,
             text:"",
-    category:"all",
-    company:"all",
-    color:"all",
+    category:"All",
+    company:"All",
+    color:"All",
     maxPrice:state.filters.maxPrice,
     price:state.filters.maxPrice,
-    minPrice:state.filters.minPrice,
+    minPrice:0,
 
           }
 

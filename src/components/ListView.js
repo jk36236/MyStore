@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import { Button } from '../styles/Button';
 
 const ListView = ({products}) => {
+  console.log(products);
   return (
     <Wrapper className='section'>
       <div className='container grid'>
@@ -13,9 +14,10 @@ const ListView = ({products}) => {
 {
   products.map((curElem)=>{
  const {id,name,image,price,description}=curElem;
+ 
 
  return (
- <div className='card grid grid-two-column'>
+ <div className='card grid grid-two-column' >
 {/* 1st column */}
 <figure>
   <img src={image} alt={name} />

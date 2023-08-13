@@ -5,7 +5,7 @@ import { useCartContext } from "./context/cart_context";
 
 const Cart = () => {
   const {cart}=useCartContext();
-  // console.log(cart);
+  console.log(cart);
   return <Wrapper>
     <div className="container">
       <div className="cart_heading grid grid-five-column">

@@ -20,7 +20,7 @@ const cartReducer = (state,action) => {
 
     return{
       ...state,
-      cart:[...state.cart,cartProduct],//jo pehle data hai uske baad add hoga cartProduct
+      cart: [ ...state.cart , cartProduct],//jo pehle data hai uske baad add hoga cartProduct
     }
   }
 
