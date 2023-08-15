@@ -15,7 +15,7 @@ const Nav = () => {
   const[menuIcon,setMenuIcon]=useState();
   const{total_item}=useCartContext();
 
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { user,loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   const Nav = styled.nav`
   .navbar-lists {
@@ -198,6 +198,11 @@ const Nav = () => {
           <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>
         </li>
         
+
+
+   {isAuthenticated &&
+   <p>{user.name}</p>
+   }     
 {/* login using AUTH0
  //if usr is authenticated show logout button else show login button */}
 

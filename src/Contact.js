@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Contact = () => {
+  const {user, isAuthenticated}=useAuth0();
   const Wrapper = styled.section`
     padding: 9rem 0 5rem 0;
     text-align: center;
@@ -41,12 +43,33 @@ const Contact = () => {
 
     {/* form -method:post because we are ending information*/}
     <div className="container">
+
+{/* agar user login hai then show his profile on cart page*/}
+      {isAuthenticated && (
+        <div className="cart-user--profile">
+          <img src={user.profile} alt={user.name} />
+          <h2 className="cart-user--name">{user.name}</h2>
+        </div>
+      )}
       <div className="contact-form">
         {/* contact-inputs class to make it flex */}
         <form action="https://formspree.io/f/mknloabv" method="POST" className="contact-inputs">
           {/* we need name and value attribute whenever we need to connect to a backend, autocomplete is off taki previous wali values dikhayi na de */}
-<input type="text" placeholder="username" name="username" required autoComplete="off" />
-<input type="email" placeholder="email" name="Email" required autoComplete="off" />
+<input
+ type="text" 
+ placeholder="username" 
+ name="username" 
+ value={isAuthenticated ? user.name : ""}
+ required 
+ autoComplete="off" 
+ />
+<input type="email"
+ placeholder="email"
+  name="Email"
+  value={isAuthenticated ? user.email : ""} 
+  required 
+  autoComplete="off" />
+
 <textarea name="Message"  placeholder="Enter your message" cols="30" rows="10" reuired autoComplete="off">
 
 </textarea>
