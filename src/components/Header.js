@@ -10,7 +10,7 @@ const Header = () => {
 
 {/* now when we click on image we will be redirected to home page without refreshing the page */}
     <NavLink to="/">
-<img src='./images/logo.png' alt="logo" className='logo'/>
+<img src='./images/Logo.png' alt="logo" className='logo'/>
     </NavLink>
 
     <Nav />

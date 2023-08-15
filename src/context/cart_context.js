@@ -55,7 +55,8 @@ const CartProvider=({children})=>{//children ka 1st letter should be small
 //we want jab page refresh ho then data localstoirage me add ho jana chahiye
 useEffect(()=>{
 //we want when page loads or anything changes in cart then cart total item value should be changed, see on right corner on cart icon
-  dispatch({type:"CART_TOTAL_ITEM"})
+  dispatch({type:"CART_TOTAL_ITEM"});
+  dispatch({type:"CART_TOTAL_PRICE"});
   //key me storage ka naam
   //value should be string, therefore convert cart into string
   //we can't directly acces cart, it is present inside state
