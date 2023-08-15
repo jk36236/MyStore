@@ -22,7 +22,7 @@ const initialState=
   // cart:[],
   cart: getLocalCartData(),
   total_item:"",
-  total_amount:"",
+  total_price:"",
   shipping_fee:50000,
 
 }
@@ -54,6 +54,8 @@ const CartProvider=({children})=>{//children ka 1st letter should be small
   // to add data in localStorage
 //we want jab page refresh ho then data localstoirage me add ho jana chahiye
 useEffect(()=>{
+//we want when page loads or anything changes in cart then cart total item value should be changed, see on right corner on cart icon
+  dispatch({type:"CART_TOTAL_ITEM"})
   //key me storage ka naam
   //value should be string, therefore convert cart into string
   //we can't directly acces cart, it is present inside state

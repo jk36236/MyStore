@@ -128,6 +128,24 @@ const cartReducer = (state,action) => {
   }
 
 
+
+  if (action.type === "CART_TOTAL_ITEM") {
+    //whenver we want to add,subtract... use reduce method
+    let updatedItemVal = state.cart.reduce((initialVal, curElem) => {
+      let { amount } = curElem; //curelem is cart
+
+      initialVal = initialVal + amount;
+      return initialVal;
+    }, 0);//0-initial value hai
+
+    return {
+      ...state,
+      total_item: updatedItemVal,
+    };
+  }
+
+
+
   return state;
 }
 
