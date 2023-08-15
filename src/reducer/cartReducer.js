@@ -9,7 +9,7 @@ const cartReducer = (state,action) => {
 
     // tackle if a product already exists in the cart
     let existingProduct=state.cart.find((curItem)=>{
-      return  curItem.id == id + color;  //cart me jo curItem hai kya uski id , jo prd usr cart me add kr rha hai uski id, color se match krti hai
+      return  curItem.id === id + color;  //cart me jo curItem hai kya uski id , jo prd usr cart me add kr rha hai uski id, color se match krti hai
     })
 
 
@@ -18,7 +18,7 @@ const cartReducer = (state,action) => {
       // if already exists we have to find it and increse its quanitity
       let updatedProduct =state.cart.map((curElem)=>{
 
-        if(curElem.id == id + color){
+        if(curElem.id === id + color){
           let newAmount= curElem.amount + amount;
 
           // check it should be less than stock
@@ -82,6 +82,52 @@ const cartReducer = (state,action) => {
       cart:[],
     }
   }
+
+ 
+
+  if (action.type === "SET_DECREMENT") {
+    // find the prduct whole icon is clicked and decrement amount by 1
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let decAmount = curElem.amount - 1;
+
+        if (decAmount <= 1) {
+          decAmount = 1;
+        }
+
+        return {
+          ...curElem,
+          amount: decAmount,
+        };
+      } else {
+        return curElem;
+      }
+    });
+    return { ...state, cart: updatedProduct };
+  }
+
+
+  if (action.type === "SET_INCREMENT") {
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let incAmount = curElem.amount + 1;
+
+        if (incAmount >= curElem.max) {
+          incAmount = curElem.max;
+        }
+
+        return {
+          ...curElem,
+          amount: incAmount,
+        };
+      } else {
+        return curElem;
+      }
+    });
+    return { ...state, cart: updatedProduct };
+  }
+
+
   return state;
 }
 

@@ -41,6 +41,16 @@ const CartProvider=({children})=>{//children ka 1st letter should be small
   }
 
 
+  // increase and decrease function
+
+  const setDecrease=(id)=>{
+   dispatch({type:"SET_DECREMENT",payload:id});
+  }
+
+  const setIncrease=(id)=>{
+    dispatch({type:"SET_INCREMENT",payload:id});
+  }
+
   // to add data in localStorage
 //we want jab page refresh ho then data localstoirage me add ho jana chahiye
 useEffect(()=>{
@@ -59,7 +69,7 @@ const clearCart=()=>{
 
     return (
       //these values are passed in provider so that any component in app can use these
-    <CartContext.Provider value={{...state,addToCart,removeItem, clearCart}}>
+    <CartContext.Provider value={{...state,addToCart,removeItem, clearCart, setDecrease, setIncrease, }}>
       {children}
     </CartContext.Provider>
     );

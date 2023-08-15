@@ -7,17 +7,17 @@ import { useCartContext } from '../context/cart_context'
 
 
 const CartItem = ({id,name,image,color,price,amount}) => {
- const {removeItem}=useCartContext();
+ const {removeItem, setDecrease, setIncrease }=useCartContext();
   // decreasing count
-  const setDecrease=()=>{
-    //if amount is >0 then decrement by 1 ,else setamount to 1
-  // amount>0 ?setAmount(amount -1): setAmount(1)
-  }
+  // const setDecrease=()=>{
+  //   //if amount is >0 then decrement by 1 ,else setamount to 1
+  // // amount>0 ?setAmount(amount -1): setAmount(1)
+  // }
 // increasing count
-  const setIncrease=()=>{
-    //if value is less then ehat we have in stock then increment else set to stock
-// amount<stock ? setAmount(amount +1 ): setAmount(stock)
-  }
+//   const setIncrease=()=>{
+//     //if value is less then ehat we have in stock then increment else set to stock
+// // amount<stock ? setAmount(amount +1 ): setAmount(stock)
+//   }
   return (
     <div className='cart_heading grid grid-five-column'>
       {/* cart image and text below it */}
@@ -44,8 +44,8 @@ const CartItem = ({id,name,image,color,price,amount}) => {
       {/* quantity */}
       <CartAmountToggle 
     amount={amount}
-    setDecrease={setDecrease}
-    setIncrease={setIncrease}
+    setDecrease={()=>setDecrease(id)}
+    setIncrease={()=>setIncrease(id)}  //passing id so that we will know ki kis pdt ke +/- par click hua hai
     
     />
 
