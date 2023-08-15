@@ -5,11 +5,17 @@ import {FiShoppingCart} from "react-icons/fi";
 import {CgMenu,CgClose} from "react-icons/cg";
 import { useState } from 'react';
 import { useCartContext } from '../context/cart_context';
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from '../styles/Button';
+
+
 const Nav = () => {
 //state for adding active class to div having class navbar
 // handle the states in icons
   const[menuIcon,setMenuIcon]=useState();
   const{total_item}=useCartContext();
+
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   const Nav = styled.nav`
   .navbar-lists {
@@ -174,6 +180,7 @@ const Nav = () => {
   }
 `;
   return (
+    
     <Nav>
       {/* if menuicon value is true then div ill have class navbar and active lese only navbar */}
     <div className={menuIcon?"navbar active ": "navbar"}>
@@ -191,6 +198,23 @@ const Nav = () => {
           <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>
         </li>
         
+{/* login using AUTH0
+ //if usr is authenticated show logout button else show login button */}
+
+  {isAuthenticated ? (
+  <li>
+    <Button 
+    onClick={() => logout({returnTo:window.location.origin})}>
+      Log Out</Button>
+      </li>
+  ):(
+   <Button onClick={()=> loginWithRedirect()}>Log In</Button>
+  )}
+
+  
+
+
+
         <li>
           {/* cart-trolley--link class so that the total cart items no. appears on top corner of cart */}
           <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
@@ -201,7 +225,7 @@ const Nav = () => {
         </li>
       </ul>
 
-      {/* 2 buttons for open and close of menu in mobile view
+    {/* 2 buttons for open and close of menu in mobile view
       initially display:none so they are not visible */}
       <div className='mobile-navbar-btn'>
         {/* icons from react icons */}
@@ -213,6 +237,7 @@ const Nav = () => {
     </div>
 
     </Nav>
+    
   )
 }
 

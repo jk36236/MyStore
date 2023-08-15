@@ -6,12 +6,21 @@ import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productcontext";
 import { FilterContextProvider } from "./context/filter_context";
 import { CartProvider } from "./context/cart_context";
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  // our main app is inside reactprovider,therefore all the componenets and pages of our app can access the data of this provider,this app is working as a children for appprovider
-  //app provider is bigger thats why outside and filtercontext provider is inside it so that it can use the data of appProvider ,because we get the products data through appprovider and the data which we have to show on products page is the same
+
+  <Auth0Provider
+    domain="dev-giu8tz7wqw1nsidg.us.auth0.com"
+    clientId="MOySTacJLlTnpyYIU24vUTpUbCcvhSpV"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
+  {/* // our main app is inside reactprovider,therefore all the componenets and pages of our app can access the data of this provider,this app is working as a children for appprovider
+  //app provider is bigger thats why outside and filtercontext provider is inside it so that it can use the data of appProvider ,because we get the products data through appprovider and the data which we have to show on products page is the same */}
 <AppProvider>
   <FilterContextProvider>
     <CartProvider>
@@ -19,6 +28,8 @@ root.render(
 </CartProvider>
 </FilterContextProvider>
 </AppProvider>
+
+</Auth0Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
