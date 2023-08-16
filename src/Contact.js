@@ -44,13 +44,7 @@ const Contact = () => {
     {/* form -method:post because we are ending information*/}
     <div className="container">
 
-{/* agar user login hai then show his profile on cart page*/}
-      {isAuthenticated && (
-        <div className="cart-user--profile">
-          <img src={user.profile} alt={user.name} />
-          <h2 className="cart-user--name">{user.name}</h2>
-        </div>
-      )}
+
       <div className="contact-form">
         {/* contact-inputs class to make it flex */}
         <form action="https://formspree.io/f/mknloabv" method="POST" className="contact-inputs">

@@ -209,7 +209,7 @@ const Nav = () => {
   {isAuthenticated ? (
   <li>
     <Button 
-    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+    onClick={() => logout({ logout: { returnTo: window.location.origin } })}>
       Log Out</Button>
       </li>
   ):(

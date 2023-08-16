@@ -15,11 +15,9 @@ const clientId= process.env.REACT_APP_CLIENT_ID;
 
 root.render(
   <Auth0Provider
-    domain={ domain}
-    clientId={ clientId}
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}
   >
   {/* // our main app is inside reactprovider,therefore all the componenets and pages of our app can access the data of this provider,this app is working as a children for appprovider
   //app provider is bigger thats why outside and filtercontext provider is inside it so that it can use the data of appProvider ,because we get the products data through appprovider and the data which we have to show on products page is the same */}
