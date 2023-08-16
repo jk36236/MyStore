@@ -15,7 +15,7 @@ const Nav = () => {
   const[menuIcon,setMenuIcon]=useState();
   const{total_item}=useCartContext();
 
-  const { user,loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { user,loginWithRedirect , logout, isAuthenticated } = useAuth0();
 
   const Nav = styled.nav`
   .navbar-lists {
@@ -209,11 +209,11 @@ const Nav = () => {
   {isAuthenticated ? (
   <li>
     <Button 
-    onClick={() => logout({returnTo:window.location.origin})}>
+    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
       Log Out</Button>
       </li>
   ):(
-   <Button onClick={()=> loginWithRedirect()}>Log In</Button>
+   <Button onClick={() => loginWithRedirect()}>Log In</Button>
   )}
 
   

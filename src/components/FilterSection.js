@@ -2,8 +2,9 @@ import React from 'react'
 import { FaCheck } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
-import FormatPrice from "../helpers/FormatPrice";
+import FormatPrice from '../helpers/FormatPrice'
 import {Button} from "../styles/Button"
+
 
 const FilterSection = () => {
 

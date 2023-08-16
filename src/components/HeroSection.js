@@ -22,7 +22,7 @@ const HeroSection = ({myData}) => {
               animi! Suscipit sapiente.
           </p>
 
-          <NavLink>
+          <NavLink to="/products">
             {/* button component */}
         <Button>
         shop now

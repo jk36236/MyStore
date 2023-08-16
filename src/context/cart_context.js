@@ -9,12 +9,17 @@ const CartContext=createContext();
 const getLocalCartData=()=>{
   let localCartData=localStorage.getItem("jatinCart");
   // jab 1st time cart load hoga then data will be empty ,therefore we have to give it an empty value
-  if(localCartData === []){
-    return [];
-  }else{
-    return JSON.parse(localCartData);
-    //again to coinvert it back to array
-  }
+  // if(localCartData === []){
+  //   return [];
+  // }else{
+  //   return JSON.parse(localCartData);
+  //   //again to coinvert it back to array
+  // }
+
+
+  const parsedData=JSON.parse(localCartData);
+  if(!Array.isArray(parsedData))  return [];
+  return parsedData;
 };
 
 const initialState=
